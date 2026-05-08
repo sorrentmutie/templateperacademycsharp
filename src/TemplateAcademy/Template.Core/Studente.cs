@@ -8,5 +8,5 @@ public class Studente
     public required string Matricola { get; set; }
     public string? Nome { get; set; }
     public string? Cognome { get; set; }
-    public List<Esame>  Esami { get; set; } = new List<Esame>();
+    public List<EsameSostenuto>  Esami { get; set; } = new List<EsameSostenuto>();
 }
