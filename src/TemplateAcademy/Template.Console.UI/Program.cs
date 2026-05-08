@@ -1,4 +1,6 @@
-﻿using Template;
+﻿using System.Numerics;
+using Template;
+using Template.Console.UI;
 using Template.Core;
 using Template.Core.Interfacce;
 using Template.Dati;
@@ -27,13 +29,35 @@ Console.WriteLine(report);
 
 Console.WriteLine(gestioneFacoltà.PuòLaurearsi(1) ? "Puoi laurearti" : "Non puoi laurearti");
 
-var faiqualcosa = Helper.FaiQualcosa("Ciao");
-var faiqualcosa2 = Studente.FaiQualcosa("Ciao2");
+
+var studenti = datiStudenti.EstraiStudenti();
+var studentePiuBravo = studenti.StudentePiuBravo();
 
 
-static class Helper
+
+
+
+var studentiFiltrati = studenti
+    .Where(s => s.Esami.Count > 5)
+    .Select(x => new { NomeCompleto = x.Nome + " " + x.Cognome, EsamiSvolti = x.Esami.Count })
+    .OrderByDescending(s => s.EsamiSvolti);
+
+foreach(var studente in studentiFiltrati)
 {
-    static public string FaiQualcosa(string input) { 
-        return $"Hai inserito {input}";
-    }
+    Console.WriteLine(studente.NomeCompleto + " "+ studente.EsamiSvolti);
+
+
+   
+
 }
+
+var Maggiorenne = MinValue(18);
+
+var z = Maggiorenne(20);
+
+
+
+Func<int, bool> MinValue(int min) => value => value >= min;
+Func<int, bool> MaxValue(int max) => value => value <= max;
+Func<int, bool> Between(int min, int max)
+    => value => value >= min && value <= max;
