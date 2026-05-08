@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="Template.Console.UI/Template.Console.UI.csproj" />
   <Project Path="Template.Core/Template.Core.csproj" />
   <Project Path="Template.Dati/Template.Dati.csproj" />
 </Solution>
