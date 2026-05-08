@@ -1,4 +1,5 @@
-﻿using Template.Core;
+﻿using Template;
+using Template.Core;
 using Template.Core.Interfacce;
 using Template.Dati;
 
@@ -25,3 +26,14 @@ Console.WriteLine(report);
 
 
 Console.WriteLine(gestioneFacoltà.PuòLaurearsi(1) ? "Puoi laurearti" : "Non puoi laurearti");
+
+var faiqualcosa = Helper.FaiQualcosa("Ciao");
+var faiqualcosa2 = Studente.FaiQualcosa("Ciao2");
+
+
+static class Helper
+{
+    static public string FaiQualcosa(string input) { 
+        return $"Hai inserito {input}";
+    }
+}

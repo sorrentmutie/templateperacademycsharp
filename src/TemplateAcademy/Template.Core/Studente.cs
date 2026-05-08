@@ -9,4 +9,8 @@ public class Studente
     public string? Nome { get; set; }
     public string? Cognome { get; set; }
     public List<EsameSostenuto>  Esami { get; set; } = new List<EsameSostenuto>();
+
+    //public static string FaiQualcosa(string input) { 
+    ////    return $"Hai inserito {input}";
+    ////}
 }
