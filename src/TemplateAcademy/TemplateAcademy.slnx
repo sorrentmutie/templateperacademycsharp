@@ -1,3 +1,4 @@
 <Solution>
   <Project Path="Template.Core/Template.Core.csproj" />
+  <Project Path="Template.Dati/Template.Dati.csproj" />
 </Solution>
