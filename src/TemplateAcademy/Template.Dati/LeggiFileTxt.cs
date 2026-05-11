@@ -9,9 +9,11 @@ public class LeggiFileTxt : IGestioneFiles
         throw new NotImplementedException();
     }
 
-    public Task CreaFile(string filename, string content)
+    public async Task CreaFile(string filename, string content)
     {
-        throw new NotImplementedException();
+        using var streamWriter = new StreamWriter(filename);
+        await streamWriter.WriteAsync(content);
+
     }
 
     public async Task<string> LeggiFile(string filename)

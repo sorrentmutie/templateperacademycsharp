@@ -78,3 +78,9 @@ else
     Console.WriteLine("Il file è vuoto o non esiste.");
 }
 
+var nuovoPercorsoFile = @"C:\temp\tempNuovo.txt";
+var contenutoDaScrivere = "Ciao, questo è un nuovo contenuto per il file.";
+await gestioneFiles.CreaFile(nuovoPercorsoFile, contenutoDaScrivere);
+
+
+
