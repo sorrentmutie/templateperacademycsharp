@@ -62,25 +62,50 @@
 //Func<int, bool> Between(int min, int max)
 //    => value => value >= min && value <= max;
 
+using Template;
 using Template.Core.Interfacce;
 using Template.Dati;
 
 var percorsoFile = @"C:\temp\temp.txt";
 
-IGestioneFiles gestioneFiles = new LeggiFileTxt();
-var contenutoFile = await gestioneFiles.LeggiFile(percorsoFile);
-if(contenutoFile is not null)
-{
-    Console.WriteLine(contenutoFile);
-}
-else
-{
-    Console.WriteLine("Il file è vuoto o non esiste.");
-}
+//IGestioneFiles gestioneFiles = new LeggiFileTxt();
+//var contenutoFile = await gestioneFiles.LeggiFile(percorsoFile);
+//if(contenutoFile is not null)
+//{
+//    Console.WriteLine(contenutoFile);
+//}
+//else
+//{
+//    Console.WriteLine("Il file è vuoto o non esiste.");
+//}
 
-var nuovoPercorsoFile = @"C:\temp\tempNuovo.txt";
-var contenutoDaScrivere = "Ciao, questo è un nuovo contenuto per il file.";
-await gestioneFiles.CreaFile(nuovoPercorsoFile, contenutoDaScrivere);
+var nuovoPercorsoFile = @"C:\temp\tempNuovo.json";
+//var contenutoDaScrivere = "Ciao, questo è un nuovo contenuto per il file.";
+//await gestioneFiles.CreaFile(nuovoPercorsoFile, contenutoDaScrivere);
+
+var gestioneJsonStudente = new GestioneJsonStudente();
+var studente = new Studente() { Nome = "Mario", Cognome = "Rossi", Matricola = "abcde" };
+var studente2 = new Studente() { Nome = "Luig", Cognome = "Bianchi", Matricola = "fghil" };
+var lista = new List<Studente>();
+lista.AddRange(studente,studente2);
+await gestioneJsonStudente.AggiungiStudenti(lista, nuovoPercorsoFile);
+
+//await gestioneJsonStudente.AggiungiStudente(studente, nuovoPercorsoFile);
+//await gestioneJsonStudente.AggiungiStudente(studente2, nuovoPercorsoFile);
+
+//var listaStudenti = await gestioneJsonStudente.LeggiListaStudenti(nuovoPercorsoFile);
+//foreach(var studente in listaStudenti ?? new List<Studente>())
+//{
+//    Console.WriteLine($"Nome: {studente.Nome}, Cognome: {studente.Cognome}, Matricola: {studente.Matricola}");
+//}
+
+Console.WriteLine("Terminata esecuzione");
+
+
+
+
+
+
 
 
 
