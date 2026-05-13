@@ -62,6 +62,7 @@
 //Func<int, bool> Between(int min, int max)
 //    => value => value >= min && value <= max;
 
+using Microsoft.EntityFrameworkCore;
 using Template;
 using Template.Core.Interfacce;
 using Template.Dati;
@@ -101,7 +102,10 @@ var percorsoFile = @"C:\temp\temp.txt";
 //}
 
 var database = new NorthwindContext();
-var categories = database.Categories.ToList();
+var categories = await database.Categories
+    .Include(c => c.Products)
+    .ThenInclude(p =>p.Supplier)    
+    .ToListAsync();
 
 
 foreach (var category in categories)
