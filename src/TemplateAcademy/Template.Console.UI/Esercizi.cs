@@ -37,5 +37,20 @@ public static class Esercizi
             System.Console.WriteLine($"OrderID: {item.Id} - OrderDate: {item.OrderDate} - Total Price: {item.TotalPrice}");
         }
     }
+
+    public static async Task esercizio3()
+    {
+
+        var database = new NorthwindContext();
+
+        (
+        await database.Orders
+        .Include(o => o.OrderDetails)
+        .ToListAsync()
+        )
+        .ToListViewModel()
+        .printOrders();
+
+    }
 }
 

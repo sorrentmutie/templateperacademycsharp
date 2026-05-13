@@ -167,8 +167,9 @@ var database = new NorthwindContext();
 
 //Console.WriteLine("Terminata esecuzione");
 
-await Esercizi.esercizio1();
-await Esercizi.esercizio2();
+//await Esercizi.esercizio1();
+//await Esercizi.esercizio2();
+await Esercizi.esercizio3();
 
 
 
