@@ -63,6 +63,7 @@
 //    => value => value >= min && value <= max;
 
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Immutable;
 using Template;
 using Template.Core.Interfacce;
 using Template.Dati;
@@ -102,17 +103,35 @@ var percorsoFile = @"C:\temp\temp.txt";
 //}
 
 var database = new NorthwindContext();
-var categories = await database.Categories
-    .Include(c => c.Products)
-    .ThenInclude(p =>p.Supplier)    
-    .ToListAsync();
 
+var data = await database.Orders.Include(o => o.Employee)
+    .Select(o => new
+     {
+         o.OrderId,
+         o.OrderDate,
+         EmployeeName = o.Employee.FirstName + " " + o.Employee.LastName
+     }).ToListAsync();
 
-foreach (var category in categories)
+foreach (var item in data)
 {
-    Console.WriteLine($"Categoria: {category.CategoryName}");
-   
+    Console.WriteLine($"OrderId: {item.OrderId}, OrderDate: {item.OrderDate}, EmployeeName: {item.EmployeeName}");
 }
+
+
+
+
+
+//var categories = await database.Categories
+//    .Include(c => c.Products)
+//    .ThenInclude(p =>p.Supplier)    
+//    .ToListAsync();
+
+
+//foreach (var category in categories)
+//{
+//    Console.WriteLine($"Categoria: {category.CategoryName}");
+
+//}
 
 Console.WriteLine("Terminata esecuzione");
 
