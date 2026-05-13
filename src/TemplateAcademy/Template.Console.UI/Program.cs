@@ -65,6 +65,7 @@
 using Template;
 using Template.Core.Interfacce;
 using Template.Dati;
+using Template.Dati.Northwind.Models;
 
 var percorsoFile = @"C:\temp\temp.txt";
 
@@ -79,16 +80,16 @@ var percorsoFile = @"C:\temp\temp.txt";
 //    Console.WriteLine("Il file è vuoto o non esiste.");
 //}
 
-var nuovoPercorsoFile = @"C:\temp\tempNuovo.json";
-//var contenutoDaScrivere = "Ciao, questo è un nuovo contenuto per il file.";
-//await gestioneFiles.CreaFile(nuovoPercorsoFile, contenutoDaScrivere);
+//var nuovoPercorsoFile = @"C:\temp\tempNuovo.json";
+////var contenutoDaScrivere = "Ciao, questo è un nuovo contenuto per il file.";
+////await gestioneFiles.CreaFile(nuovoPercorsoFile, contenutoDaScrivere);
 
-var gestioneJsonStudente = new GestioneJsonStudente();
-var studente = new Studente() { Nome = "Mario", Cognome = "Rossi", Matricola = "abcde" };
-var studente2 = new Studente() { Nome = "Luig", Cognome = "Bianchi", Matricola = "fghil" };
-var lista = new List<Studente>();
-lista.AddRange(studente,studente2);
-await gestioneJsonStudente.AggiungiStudenti(lista, nuovoPercorsoFile);
+//var gestioneJsonStudente = new GestioneJsonStudente();
+//var studente = new Studente() { Nome = "Mario", Cognome = "Rossi", Matricola = "abcde" };
+//var studente2 = new Studente() { Nome = "Luig", Cognome = "Bianchi", Matricola = "fghil" };
+//var lista = new List<Studente>();
+//lista.AddRange(studente,studente2);
+//await gestioneJsonStudente.AggiungiStudenti(lista, nuovoPercorsoFile);
 
 //await gestioneJsonStudente.AggiungiStudente(studente, nuovoPercorsoFile);
 //await gestioneJsonStudente.AggiungiStudente(studente2, nuovoPercorsoFile);
@@ -98,6 +99,16 @@ await gestioneJsonStudente.AggiungiStudenti(lista, nuovoPercorsoFile);
 //{
 //    Console.WriteLine($"Nome: {studente.Nome}, Cognome: {studente.Cognome}, Matricola: {studente.Matricola}");
 //}
+
+var database = new NorthwindContext();
+var categories = database.Categories.ToList();
+
+
+foreach (var category in categories)
+{
+    Console.WriteLine($"Categoria: {category.CategoryName}");
+   
+}
 
 Console.WriteLine("Terminata esecuzione");
 
