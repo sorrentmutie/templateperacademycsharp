@@ -169,7 +169,8 @@ var database = new NorthwindContext();
 
 //await Esercizi.esercizio1();
 //await Esercizi.esercizio2();
-await Esercizi.esercizio3();
+//await Esercizi.esercizio3();
+await Esercizi.esercizio5();
 
 
 

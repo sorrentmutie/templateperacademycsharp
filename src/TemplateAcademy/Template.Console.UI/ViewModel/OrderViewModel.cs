@@ -1,6 +1,6 @@
 ﻿using Template.Dati.Northwind.Models;
 
-namespace Template.Console.UI;
+namespace Template.Console.UI.ViewModel;
 
 public class OrderViewModel
 {

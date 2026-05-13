@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Template.Console.UI.ViewModel;
 using Template.Dati.Northwind.Models;
 
 namespace Template.Console.UI;
@@ -51,6 +52,35 @@ public static class Esercizi
         .ToListViewModel()
         .printOrders();
 
+    }
+
+    public static async Task esercizio4()
+    {
+        var database = new NorthwindContext();
+        var mostSoldProduct = (await database.Products.Include(p => p.OrderDetails)
+            .Select(p => new ProductViewModel
+            {
+                Id = p.ProductId,
+                Name = p.ProductName,
+                TotalQuantityOrdered = p.OrderDetails.Sum(od => od.Quantity)
+            })
+            .ToListAsync()).MaxBy(p => p.TotalQuantityOrdered);
+
+    }
+
+    public static async Task esercizio5()
+    {
+        var database = new NorthwindContext();
+        var mostSoldProduct = await database.Products
+    .Select(p => new ProductViewModel
+    {
+        Id = p.ProductId,
+        Name = p.ProductName,
+        TotalQuantityOrdered = p.OrderDetails.Sum(od => od.Quantity)
+    })
+    .OrderByDescending(p => p.TotalQuantityOrdered)
+    .FirstOrDefaultAsync();
+        System.Console.WriteLine($"{mostSoldProduct?.Name} - {mostSoldProduct?.TotalQuantityOrdered}");
     }
 }
 
