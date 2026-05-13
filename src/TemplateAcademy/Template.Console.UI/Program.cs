@@ -63,6 +63,7 @@
 //    => value => value >= min && value <= max;
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using System.Collections.Immutable;
 using Template;
 using Template.Core.Interfacce;
@@ -103,22 +104,52 @@ var percorsoFile = @"C:\temp\temp.txt";
 //}
 
 var database = new NorthwindContext();
+//var prodotti = await database.Products.Include(p => p.Category).ToListAsync();
 
-var data = await database.Orders.Include(o => o.Employee)
-    .Select(o => new
-     {
-         o.OrderId,
-         o.OrderDate,
-         EmployeeName = o.Employee.FirstName + " " + o.Employee.LastName
-     }).ToListAsync();
+//var data = await database.Orders.Include(o => o.Employee)
+//    .Select(o => new
+//     {
+//         o.OrderId,
+//         o.OrderDate,
+//         EmployeeName = o.Employee.FirstName + " " + o.Employee.LastName
+//     }).ToListAsync();
 
-foreach (var item in data)
+//foreach (var item in data)
+//{
+//    Console.WriteLine($"OrderId: {item.OrderId}, OrderDate: {item.OrderDate}, EmployeeName: {item.EmployeeName}");
+//}
+
+var orderDetails = await database.OrderDetails
+    .Include(od => od.Product)
+    .ThenInclude(p => p.Category)
+    .AsNoTracking()
+    .ToListAsync();
+
+
+var nuovoProdotto = new Product()
 {
-    Console.WriteLine($"OrderId: {item.OrderId}, OrderDate: {item.OrderDate}, EmployeeName: {item.EmployeeName}");
-}
+    ProductName = "Nuovo Prodotto4",
+    UnitPrice = 10.99m,
+    UnitsInStock = 100,
+    CategoryId = 1, // Assicurati che questa categoria esista
+    SupplierId = 1  // Assicurati che questo fornitore esista
+};
+
+database.Products.Add(nuovoProdotto);
 
 
 
+var nuovaCategoria = new Category()
+{
+    CategoryName = "Nuova Categoria",
+    Description = "Descrizione della nuova categoria"
+};
+database.Categories.Add(nuovaCategoria);//await database.SaveChangesAsync();
+
+
+nuovoProdotto.ProductName = "zzzzzz";
+
+await database.SaveChangesAsync();
 
 
 //var categories = await database.Categories
