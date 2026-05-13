@@ -66,6 +66,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Scaffolding.Metadata;
 using System.Collections.Immutable;
 using Template;
+using Template.Console.UI;
 using Template.Core.Interfacce;
 using Template.Dati;
 using Template.Dati.Northwind.Models;
@@ -119,37 +120,37 @@ var database = new NorthwindContext();
 //    Console.WriteLine($"OrderId: {item.OrderId}, OrderDate: {item.OrderDate}, EmployeeName: {item.EmployeeName}");
 //}
 
-var orderDetails = await database.OrderDetails
-    .Include(od => od.Product)
-    .ThenInclude(p => p.Category)
-    .AsNoTracking()
-    .ToListAsync();
+//var orderDetails = await database.OrderDetails
+//    .Include(od => od.Product)
+//    .ThenInclude(p => p.Category)
+//    .AsNoTracking()
+//    .ToListAsync();
 
 
-var nuovoProdotto = new Product()
-{
-    ProductName = "Nuovo Prodotto4",
-    UnitPrice = 10.99m,
-    UnitsInStock = 100,
-    CategoryId = 1, // Assicurati che questa categoria esista
-    SupplierId = 1  // Assicurati che questo fornitore esista
-};
+//var nuovoProdotto = new Product()
+//{
+//    ProductName = "Nuovo Prodotto4",
+//    UnitPrice = 10.99m,
+//    UnitsInStock = 100,
+//    CategoryId = 1, // Assicurati che questa categoria esista
+//    SupplierId = 1  // Assicurati che questo fornitore esista
+//};
 
-database.Products.Add(nuovoProdotto);
-
-
-
-var nuovaCategoria = new Category()
-{
-    CategoryName = "Nuova Categoria",
-    Description = "Descrizione della nuova categoria"
-};
-database.Categories.Add(nuovaCategoria);//await database.SaveChangesAsync();
+//database.Products.Add(nuovoProdotto);
 
 
-nuovoProdotto.ProductName = "zzzzzz";
 
-await database.SaveChangesAsync();
+//var nuovaCategoria = new Category()
+//{
+//    CategoryName = "Nuova Categoria",
+//    Description = "Descrizione della nuova categoria"
+//};
+//database.Categories.Add(nuovaCategoria);//await database.SaveChangesAsync();
+
+
+//nuovoProdotto.ProductName = "zzzzzz";
+
+//await database.SaveChangesAsync();
 
 
 //var categories = await database.Categories
@@ -164,9 +165,10 @@ await database.SaveChangesAsync();
 
 //}
 
-Console.WriteLine("Terminata esecuzione");
+//Console.WriteLine("Terminata esecuzione");
 
-
+await Esercizi.esercizio1();
+await Esercizi.esercizio2();
 
 
 
