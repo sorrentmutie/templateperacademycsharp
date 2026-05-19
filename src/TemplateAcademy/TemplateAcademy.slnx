@@ -2,4 +2,5 @@
   <Project Path="Template.Console.UI/Template.Console.UI.csproj" />
   <Project Path="Template.Core/Template.Core.csproj" />
   <Project Path="Template.Dati/Template.Dati.csproj" />
+  <Project Path="Template.Web.MVC/Template.Web.MVC.csproj" Id="3d508bb8-a3ba-4252-85ff-cc52e0b6f955" />
 </Solution>
