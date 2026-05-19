@@ -82,5 +82,10 @@ public static class Esercizi
     .FirstOrDefaultAsync();
         System.Console.WriteLine($"{mostSoldProduct?.Name} - {mostSoldProduct?.TotalQuantityOrdered}");
     }
+
+
+
+
+
 }
 
