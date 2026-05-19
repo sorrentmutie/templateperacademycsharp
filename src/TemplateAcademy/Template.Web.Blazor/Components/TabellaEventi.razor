@@ -1,0 +1,43 @@
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@using Template.Web.Blazor.Models
+@page "/eventi"
+<h3>Tabella Eventi</h3>
+
+<table class="table table-bordered table-striped table-hover"> 
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Titolo</th>
+            <th>Data</th>
+            <th>Località</th>
+        </tr>
+    </thead>
+
+
+@if(Eventi == null || Eventi.Count == 0)
+{
+    <tr>
+        <td colspan="4" class="text-center">Nessun evento disponibile</td>
+    </tr>
+}
+else
+    {
+        @foreach (var evento in Eventi)
+        {
+            <tr>
+                <td> @evento.Id</td>
+                <td>@evento.Titolo</td>
+                <td>@evento.Data </td>
+                <td>@evento.Località</td>
+            </tr>
+        }
+    }
+
+
+
+</table>
+
+@code {
+  
+    [Parameter] public List<Evento>? Eventi { get; set; }
+}

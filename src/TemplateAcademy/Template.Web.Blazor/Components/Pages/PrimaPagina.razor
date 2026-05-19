@@ -1,0 +1,18 @@
+﻿@page "/prima-pagina"
+@using Template.Web.Blazor.Models
+
+<TabellaEventi Eventi="eventiPassati"/>
+<TabellaEventi Eventi="eventiFuturi" />
+
+@code {
+    private List<Evento> eventiPassati= new List<Evento>
+    {
+      new Evento { Id = 1, Titolo = "Evento 1", Data = DateTime.Now.AddDays(-7), Località = "Roma" },
+    };
+
+    private List<Evento> eventiFuturi= new List<Evento>
+    {
+      new Evento { Id = 2, Titolo = "Evento 2", Data = DateTime.Now.AddDays(1) , Località = "Napoli"},
+      new Evento { Id = 3, Titolo = "Evento 3", Data = DateTime.Now.AddDays(2) }
+    };
+}
