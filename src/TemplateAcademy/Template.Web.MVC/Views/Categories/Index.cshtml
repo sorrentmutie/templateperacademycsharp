@@ -1,0 +1,7 @@
+﻿@using Template.Dati.Northwind.Models;
+@model IEnumerable<Category>
+
+@foreach(var category in Model)
+{
+    <p>@category.CategoryName</p>
+}
